@@ -1,0 +1,185 @@
+<div class="container-login">
+
+    <div class="main">
+
+         <form action="/create" method="POST" class="form" id="form-2">
+          <h3 class="heading">Đăng ký</h3>
+          <p class="desc">Hãy đăng ký để sử dụng được nhiều tính năng hơn ❤️</p>
+      
+          <div class="spacer"></div>
+      
+          <div class="form-group">
+            <label for="user-name-create" class="form-label">Tên tài khoản</label>
+            <input id="user-name-create" required name="user-name" type="text" placeholder="Nhập tên tài khoản" class="form-control">
+            <span class="form-message">{{#if _existed }}Tên tài khoản đã tồn tại {{else}} {{/if}} </span>
+          </div>
+      
+          <div class="form-group">
+            <label for="password-create" class="form-label">Nhập mật khẩu</label>
+            <input id="password-create" required name="password" placeholder="Nhập mật khẩu" type="password" class="form-control">
+            <span class="form-message">{{#if _error }}  {{else}} {{/if}}</span>
+          </div>
+
+          <div class="form-group">
+            <label for="password-confirm-create" class="form-label">Nhập lại mật khẩu</label>
+            <input id="password-confirm-create" required name="password-confirm" placeholder="Nhập lại mật khẩu" type="password" class="form-control">
+            <span class="form-message">  {{#if _error }} {{else}} {{/if}}</span>
+          </div>
+          <button class="form-submit form-submit-create">Đăng ký</button>
+        </form>      
+    </div>
+      <button class="form-submit btn-login">
+        <a href="/login" class="form-submit" style="text-decoration: none;"> Đăng nhập tài khoản</a>
+      </button>
+</div>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  .hiden{
+    display: none;
+  }
+  html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: "Open Sans", sans-serif;
+    user-select:none;
+  }
+  .container-login{
+    min-height: 100vh;
+    background: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main {
+    display: flex;
+    flex-direction: row;
+    
+  }
+  .form {
+    width: 360px;
+    min-height: 100px;
+    padding: 32px 24px;
+    text-align: center;
+    background: #fff;
+    border-radius: 2px;
+    margin: 24px;
+    align-self: center;
+    box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
+  }
+  .form .heading {
+    font-size: 2rem;
+  }
+  .form .desc {
+    text-align: center;
+    color: #636d77;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    line-height: 2.4rem;
+    margin-top: 16px;
+    font-weight: 300;
+  }
+  
+  .form-group {
+    display: flex;
+    margin-bottom: 16px;
+    flex-direction: column;
+  }
+
+  .form-group-gender div{
+    display: flex;
+    align-items:center;
+    font-size:1.4rem;
+    padding-left: 16px;
+    padding-bottom: 6px;
+  }
+  .form-group-gender div span{
+    padding-right: 8px;
+  }
+  .form-label,
+  .form-message {
+    text-align: left;
+  }
+  .form-message{
+    color: red;
+  }
+  .form-label {
+    font-weight: 700;
+    padding-bottom: 6px;
+    line-height: 1.8rem;
+    font-size: 1.4rem;
+  }
+  
+  .form-control {
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1.4rem;
+  }
+ 
+  .form-control:hover {
+    border-color: #1dbfaf;
+  }
+  
+  .form-group.invalid .form-control {
+    border-color: #f33a58;
+  }
+  
+  .form-group.invalid .form-message {
+    color: #f33a58;
+  }
+  
+  .form-message {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+  }
+  
+  .form-submit {
+    outline: none;
+    background-color: #1dbfaf;
+    margin-top: 12px;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .form-submit:hover {
+    background-color: #1ac7b6;
+  }
+  
+  .spacer {
+    margin-top: 36px;
+  }
+  
+
+  .btn-login{
+    width:max-content;
+  }
+
+</style>
+<script>
+
+  const password=document.querySelector('#password-create')
+  const passwordConfirm=document.querySelector('#password-confirm-create')
+  const btnCreate=document.querySelector('.form-submit-create')
+  const messagePassword=password.parentElement.querySelector('.form-message');
+  const messagePasswordConfirm=passwordConfirm.parentElement.querySelector('.form-message');
+  btnCreate.onclick=function(e){
+    if (password.value!=passwordConfirm.value){
+      e.preventDefault();
+      messagePasswordConfirm.innerText="Nhập lại mật khẩu không chính xác"
+    }
+  }
+</script>
